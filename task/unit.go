@@ -107,6 +107,9 @@ func (u *Unit) GetNextTime() string {
 	if u.c == nil {
 		return ""
 	}
+	if u.status == StatusClose {
+		return ""
+	}
 	return u.c.Entries()[0].Next.Format("2006-01-02 15:04:05")
 }
 
