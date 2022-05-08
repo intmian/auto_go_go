@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-const CMaxRecordCount = 10
+const CMaxRecordCount = 20
 
 // TODO:之后可以新增一种节点只能显示20个日志，按键可以显示更多
 

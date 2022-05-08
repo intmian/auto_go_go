@@ -3,7 +3,7 @@ module auto_go_go
 go 1.18
 
 require (
-	github.com/intmian/mian_go_lib v0.0.0-20220508093121-5f7387e80cf3
+	github.com/intmian/mian_go_lib v0.0.0-20220508101801-0c34496146f3
 	github.com/robfig/cron v1.2.0
 )
 
