@@ -87,6 +87,7 @@ func (u *Unit) do() {
 	begin := time.Now()
 	go func() {
 		u.f()
+		ok <- true
 	}()
 loop:
 	for {
