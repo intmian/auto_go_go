@@ -135,7 +135,12 @@ func (u *Unit) Init() {
 }
 
 func (u *Unit) check() {
+	if !setting.GSettingMgr.Exist(u.name + ".open") {
+		return
+	}
 	if !setting.GSettingMgr.Get(u.name + ".open").(bool) {
 		u.Stop()
+	} else {
+		u.Start()
 	}
 }
