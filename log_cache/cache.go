@@ -1,6 +1,9 @@
-package log
+package log_cache
 
-import "sync"
+import (
+	"strings"
+	"sync"
+)
 
 const CMaxRecordCount = 10
 
@@ -27,10 +30,17 @@ func (m *Mgr) Get() []string {
 	return m.logs
 }
 
+func (m *Mgr) ToString() string {
+	m.rwLock.RLock()
+	defer m.rwLock.RUnlock()
+	return strings.Join(m.logs, "")
+}
+
 func NewMgr() *Mgr {
 	mgr := &Mgr{}
 	mgr.logs = make([]string, 0)
+	mgr.rwLock = &sync.RWMutex{}
 	return mgr
 }
 
-var GLog = NewMgr()
+var GLogCache = NewMgr()
