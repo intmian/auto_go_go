@@ -19,6 +19,7 @@ func (b *Baidu) Init() {
 			"扫地机器人 发布",
 			"kindle",
 		})
+		setting.GSettingMgr.Save()
 	}
 }
 

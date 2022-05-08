@@ -57,13 +57,13 @@ func Init() (menu.Menu, bool) {
 			{
 				ID: 1,
 				FUNC: menu.MakeUntilPressForShowFunc(func() {
-					println(task.GMgr.MakeStatusText())
+					print(task.GMgr.MakeStatusText())
 				}, 1),
 			},
 			{
 				ID: 2,
 				FUNC: menu.MakeUntilPressForShowFunc(func() {
-					println(log_cache.GLogCache.ToString())
+					print(log_cache.GLogCache.ToString())
 				}, 1),
 			},
 			{

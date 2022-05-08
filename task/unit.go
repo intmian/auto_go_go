@@ -3,6 +3,7 @@ package task
 import (
 	"auto_go_go/setting"
 	"auto_go_go/tool"
+	"time"
 
 	"github.com/intmian/mian_go_lib/tool/xlog"
 	"github.com/robfig/cron"
@@ -50,6 +51,7 @@ func (u *Unit) Start() {
 		return
 	}
 	setting.GSettingMgr.Set(u.name+".open", true)
+	setting.GSettingMgr.Save()
 	u.c = cron.New()
 	err := u.c.AddFunc(u.timeStr, u.do)
 	if err != nil {
@@ -63,8 +65,8 @@ func (u *Unit) Stop() {
 	if u.status == StatusClose {
 		return
 	}
-
 	setting.GSettingMgr.Set(u.name+".open", false)
+	setting.GSettingMgr.Save()
 	u.c.Stop()
 	u.status = StatusClose
 }
@@ -81,7 +83,21 @@ func (u *Unit) do() {
 	}()
 	u.status = StatusRunning
 	tool.GLog.Log(xlog.ELog, u.name, "执行开始")
-	u.f()
+	ok := make(chan bool)
+	begin := time.Now()
+	go func() {
+		u.f()
+	}()
+loop:
+	for {
+		select {
+		case <-ok:
+			break loop
+		case <-time.After(time.Hour):
+			now := time.Now()
+			tool.GLog.Log(xlog.EWarning, u.name, "执行超时:"+now.Sub(begin).String())
+		}
+	}
 	tool.GLog.Log(xlog.ELog, u.name, "执行完成")
 	u.status = StatusPending
 
@@ -104,9 +120,17 @@ func NewUnit(task Task) *Unit {
 }
 
 func (u *Unit) Init() {
+	u.init()
 	if !setting.GSettingMgr.Exist(u.name + ".open") {
-		u.init()
+		setting.GSettingMgr.Set(u.name+".open", true)
+		setting.GSettingMgr.Save()
 		u.Start()
+	} else {
+		if setting.GSettingMgr.Get(u.name + ".open").(bool) {
+			u.Start()
+		} else {
+			u.Stop()
+		}
 	}
 }
 

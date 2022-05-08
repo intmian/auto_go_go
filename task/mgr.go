@@ -14,7 +14,6 @@ func (mgr *Mgr) Add(task Task) {
 	t := NewUnit(task)
 	t.Init()
 	mgr.Units[task.GetName()] = t
-
 }
 
 // Del 删除单元

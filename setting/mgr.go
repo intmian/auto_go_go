@@ -25,16 +25,6 @@ func NewMgr() *Mgr {
 	return m
 }
 
-func (m *Mgr) ReadToSetting() map[string]interface{} {
-	m.rwLock.Lock()
-	return m.data
-}
-
-func (m *Mgr) SettingReady() {
-	m.j.Save()
-	m.rwLock.Unlock()
-}
-
 func (m *Mgr) Load() {
 	m.rwLock.Lock()
 	m.j.Load("setting.json")
@@ -70,6 +60,7 @@ func (m *Mgr) Set(key string, value interface{}) {
 func (m *Mgr) Save() {
 	m.rwLock.RLock()
 	m.j.Save()
+	m.rwLock.RUnlock()
 }
 
 var GSettingMgr = NewMgr()
