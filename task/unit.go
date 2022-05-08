@@ -3,6 +3,7 @@ package task
 import (
 	"auto_go_go/setting"
 	"auto_go_go/tool"
+
 	"github.com/intmian/mian_go_lib/tool/xlog"
 	"github.com/robfig/cron"
 )
@@ -50,7 +51,7 @@ func (u *Unit) Start() {
 	}
 	setting.GSettingMgr.Set(u.name+".open", true)
 	u.c = cron.New()
-	err := u.c.AddFunc(u.timeStr, u.f)
+	err := u.c.AddFunc(u.timeStr, u.do)
 	if err != nil {
 		tool.GLog.Log(xlog.EError, u.name, "start失败:"+err.Error())
 	}
