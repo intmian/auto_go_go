@@ -46,10 +46,6 @@ func Do() {
 }
 
 func Init() (menu.Menu, bool) {
-	tool.Init()
-	tool.GLog.Log(xlog.ELog, "SYS", "初始化开始")
-	task.Init()
-	tool.GLog.Log(xlog.ELog, "SYS", "task初始化完成")
 	m := menu.Menu{}
 	suc := m.Init(menu.BindInfo{
 		LogicBindText: BindText,
@@ -80,6 +76,5 @@ func Init() (menu.Menu, bool) {
 		tool.GLog.Log(xlog.ELog, "SYS", "初始化失败")
 		return menu.Menu{}, true
 	}
-	tool.GLog.Log(xlog.ELog, "SYS", "初始化完成")
 	return m, false
 }

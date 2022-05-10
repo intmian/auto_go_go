@@ -45,7 +45,7 @@ func (b *Baidu) Do() {
 }
 
 func (b *Baidu) GetName() string {
-	return "baidu"
+	return "BAIDU"
 }
 
 func (b *Baidu) GetTimeStr() string {

@@ -24,7 +24,7 @@ func (d *Dapan) Do() {
 }
 
 func (d *Dapan) GetName() string {
-	return "Dapan"
+	return "DAPAN"
 }
 
 func (d *Dapan) GetTimeStr() string {

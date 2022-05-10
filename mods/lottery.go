@@ -23,7 +23,7 @@ func (l *Lottery) Do() {
 }
 
 func (l *Lottery) GetName() string {
-	return "lottery"
+	return "LOTTERY"
 }
 
 func (l *Lottery) GetTimeStr() string {
