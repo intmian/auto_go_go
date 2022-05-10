@@ -8,7 +8,6 @@ import (
 	"auto_go_go/tool"
 	"github.com/gin-gonic/gin"
 	"github.com/intmian/mian_go_lib/tool/xlog"
-	"strconv"
 )
 
 func main() {
@@ -26,7 +25,7 @@ func main() {
 		if setting.GSettingMgr.Get("web.port") == nil {
 			err = r.Run(":8080")
 		} else {
-			port := ":" + strconv.Itoa(setting.GSettingMgr.Get("web.port").(int))
+			port := ":" + setting.GSettingMgr.Get("web.port").(string)
 			err = r.Run(port)
 		}
 		if err != nil {

@@ -8,5 +8,5 @@
   "lottery.open": true,
   "pushdeer_token": "PDU10120Tp8PByEPFdrKiStSvMWeOdeFtwY7GuOmQ",
   "system.web_mode": true,
-  "web.port": 8080
+  "web.port": "8080"
 }
