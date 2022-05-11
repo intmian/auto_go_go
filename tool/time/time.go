@@ -17,10 +17,10 @@ func (t *Time) GetTimeStr() string {
 		durationStr += fmt.Sprintf("%d秒", int(duration.Seconds()))
 	}
 	if int(duration.Minutes()) > 0 {
-		durationStr = fmt.Sprintf("%d分 ", int(duration.Minutes())) + durationStr
+		durationStr = fmt.Sprintf("%d分 ", int(duration.Minutes())%60) + durationStr
 	}
 	if int(duration.Hours()) > 0 {
-		durationStr = fmt.Sprintf("%d小时 ", int(duration.Hours())) + durationStr
+		durationStr = fmt.Sprintf("%d小时 ", int(duration.Hours())%24) + durationStr
 	}
 	if int(duration.Hours()) >= 24 {
 		durationStr = fmt.Sprintf("%d天 ", int(duration.Hours()/24)) + durationStr
