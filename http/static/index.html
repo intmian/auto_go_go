@@ -4,6 +4,9 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+<div id="title">
+    <h1>{{ message }}</h1>
+</div>
 <pre id="log" class="all">
     <h1>日志:</h1>
     {{ log }}
@@ -40,17 +43,36 @@
             }
         },
         mounted() {
-            axios.get("/api/status").then((response) => {
+            axios.get("/api/task/status").then((response) => {
                 this.s = response.data
             })
             setInterval(() => {
-                axios.get("/api/status").then((response) => {
+                axios.get("/api/task/status").then((response) => {
                     this.s = response.data
                 })
             }, 10000)
         }
     }
     Vue.createApp(Status).mount('#status')
+
+    const Title = {
+        data() {
+            return {
+                message: ""
+            }
+        },
+        mounted() {
+            axios.get("/api/title").then((response) => {
+                this.message = response.data
+            })
+            setInterval(() => {
+                axios.get("/api/title").then((response) => {
+                    this.message = response.data
+                })
+            }, 1000)
+        }
+    }
+    Vue.createApp(Title).mount('#title')
 </script>
 <style>
     .all {

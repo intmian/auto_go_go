@@ -76,16 +76,16 @@ func (u *Unit) Status() Status {
 }
 
 func (u *Unit) do() {
-	defer func() {
-		if err := recover(); err != nil {
-			tool.GLog.Log(xlog.EError, u.name, "携程崩溃:"+err.(string))
-		}
-	}()
 	u.status = StatusRunning
 	tool.GLog.Log(xlog.ELog, u.name, "执行开始")
 	ok := make(chan bool)
 	begin := time.Now()
 	go func() {
+		defer func() {
+			if err := recover(); err != nil {
+				tool.GLog.Log(xlog.EError, u.name, "携程崩溃:"+u.name)
+			}
+		}()
 		u.f()
 		ok <- true
 	}()

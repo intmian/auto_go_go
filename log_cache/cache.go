@@ -1,7 +1,6 @@
 package log_cache
 
 import (
-	"auto_go_go/tool/time"
 	"strings"
 	"sync"
 )
@@ -34,7 +33,7 @@ func (m *Mgr) Get() []string {
 func (m *Mgr) ToString() string {
 	m.rwLock.RLock()
 	defer m.rwLock.RUnlock()
-	return time.GTime.GetTimeStr() + strings.Join(m.logs, "")
+	return strings.Join(m.logs, "")
 }
 
 func NewMgr() *Mgr {

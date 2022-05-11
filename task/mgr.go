@@ -1,7 +1,6 @@
 package task
 
 import (
-	"auto_go_go/tool/time"
 	"fmt"
 )
 
@@ -48,15 +47,16 @@ func (mgr *Mgr) StopUnit(name string) {
 	}
 }
 
-func (mgr *Mgr) StartUnit(name string) {
+func (mgr *Mgr) UnitDo(name string) bool {
 	if unit, ok := mgr.Units[name]; ok {
 		unit.do()
+		return true
 	}
+	return false
 }
 
 func (mgr *Mgr) MakeStatusText() string {
 	var text string
-	text = time.GTime.GetTimeStr()
 	title := fmt.Sprintf("%-10s%-10s%-20s", "任务", "状态", "下次调用")
 	text += title + "\n"
 	for _, unit := range mgr.Units {

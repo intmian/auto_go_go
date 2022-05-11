@@ -1,15 +1,15 @@
-package time
+package status
 
 import (
 	"fmt"
 	"time"
 )
 
-type Time struct {
+type Status struct {
 	startTime time.Time
 }
 
-func (t *Time) GetTimeStr() string {
+func (t *Status) GetTimeStr() string {
 	nowStr := time.Now().Format("2006-01-02 15:04:05")
 	duration := time.Now().Sub(t.startTime)
 	durationStr := ""
@@ -28,4 +28,4 @@ func (t *Time) GetTimeStr() string {
 	return nowStr + " 已运行:" + durationStr + "\n"
 }
 
-var GTime = Time{time.Now()}
+var GStatus = Status{time.Now()}
