@@ -1,12 +1,18 @@
 {
-  "BAIDU.open": true,
-  "DAPAN.open": true,
-  "Dapan.open": false,
-  "LOTTERY.open": true,
-  "baidu.keys": "",
-  "baidu.open": true,
-  "lottery.open": true,
-  "pushdeer_token": "PDU10120Tp8PByEPFdrKiStSvMWeOdeFtwY7GuOmQ",
-  "system.web_mode": true,
-  "web.port": "8080"
+	"BAIDU.open": true,
+	"DAPAN.open": true,
+	"Dapan.open": false,
+	"LOTTERY.open": true,
+	"baidu.keys": [
+		"nuc",
+		"群晖",
+		"macbook air",
+		"扫地机器人 发布",
+		"kindle"
+	],
+	"baidu.open": true,
+	"lottery.open": true,
+	"pushdeer_token": "PDU10120Tp8PByEPFdrKiStSvMWeOdeFtwY7GuOmQ",
+	"system.web_mode": true,
+	"web.port": "8080"
 }
