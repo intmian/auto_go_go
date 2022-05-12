@@ -13,7 +13,7 @@ func (l *Lottery) Init() {
 }
 
 func (l *Lottery) Do() {
-	lotteries := spider.GetLottery()
+	lotteries := spider.GetLotteryNow()
 	if lotteries == nil {
 		tool.GLog.Log(xlog.EWarning, l.GetName(), "接口失效")
 		return
@@ -26,6 +26,6 @@ func (l *Lottery) GetName() string {
 	return "LOTTERY"
 }
 
-func (l *Lottery) GetTimeStr() string {
+func (l *Lottery) GetInitTimeStr() string {
 	return "0 0 21 * * ?"
 }

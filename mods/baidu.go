@@ -58,6 +58,6 @@ func (b *Baidu) GetName() string {
 	return "BAIDU"
 }
 
-func (b *Baidu) GetTimeStr() string {
+func (b *Baidu) GetInitTimeStr() string {
 	return "0 0 8 * * ?"
 }

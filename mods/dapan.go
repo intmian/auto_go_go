@@ -27,6 +27,6 @@ func (d *Dapan) GetName() string {
 	return "DAPAN"
 }
 
-func (d *Dapan) GetTimeStr() string {
-	return "0 0 15 * * ?"
+func (d *Dapan) GetInitTimeStr() string {
+	return "0 10 15 * * ?"
 }

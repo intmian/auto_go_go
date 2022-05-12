@@ -34,7 +34,7 @@ type Task interface {
 	Init()
 	Do()
 	GetName() string
-	GetTimeStr() string
+	GetInitTimeStr() string
 }
 
 type Unit struct {
@@ -115,12 +115,21 @@ func (u *Unit) GetNextTime() string {
 }
 
 func NewUnit(task Task) *Unit {
-	return &Unit{
-		timeStr: task.GetTimeStr(),
+	u := Unit{
+		timeStr: task.GetInitTimeStr(),
 		name:    task.GetName(),
 		f:       task.Do,
 		init:    task.Init,
 	}
+	t := setting.GSettingMgr.Get(u.name + ".time_str")
+	if t != nil {
+		switch t.(type) {
+		case string:
+			u.timeStr = t.(string)
+		}
+	}
+	setting.GSettingMgr.Set(u.name+".time_str", u.timeStr)
+	return &u
 }
 
 func (u *Unit) Init() {
@@ -139,12 +148,25 @@ func (u *Unit) Init() {
 }
 
 func (u *Unit) check() {
-	if !setting.GSettingMgr.Exist(u.name + ".open") {
-		return
+	i := setting.GSettingMgr.Get(u.name + ".open")
+	if i != nil {
+		switch i.(type) {
+		case bool:
+			if i.(bool) {
+				u.Start()
+			} else {
+				u.Stop()
+			}
+		}
 	}
-	if !setting.GSettingMgr.Get(u.name + ".open").(bool) {
-		u.Stop()
-	} else {
-		u.Start()
+
+	i = setting.GSettingMgr.Get(u.name + ".time_str")
+	if i != nil {
+		switch i.(type) {
+		case string:
+			u.timeStr = i.(string)
+			u.c.Stop()
+			u.c.Start()
+		}
 	}
 }
