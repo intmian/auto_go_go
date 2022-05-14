@@ -35,7 +35,7 @@ func (mgr *Mgr) AllStop() {
 	}
 }
 
-func (mgr *Mgr) Start(name string) {
+func (mgr *Mgr) StartUnit(name string) {
 	if unit, ok := mgr.Units[name]; ok {
 		unit.Start()
 	}
@@ -76,4 +76,26 @@ func (mgr *Mgr) Check() {
 	for _, unit := range mgr.Units {
 		unit.check()
 	}
+}
+
+type UnitStatus struct {
+	name       string
+	nextTime   string
+	nextRemain string
+	timeParam  string
+	open       bool
+}
+
+func (mgr *Mgr) GetAllUnitStatus() []UnitStatus {
+	var status []*UnitStatus
+	for _, unit := range mgr.Units {
+		status := &UnitStatus{
+			name:       unit.name,
+			nextTime:   unit.GetNextTime(),
+			nextRemain: unit.GetNextRemain(),
+			timeParam:  unit.,
+			open:       unit.open,
+		}
+	}
+	return status
 }

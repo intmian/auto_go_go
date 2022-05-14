@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.7.7
-	github.com/intmian/mian_go_lib v0.0.0-20220512121436-fe0610627940
+	github.com/intmian/mian_go_lib v0.0.0-20220514054134-384b65b92ead
 	github.com/robfig/cron v1.2.0
 )
 

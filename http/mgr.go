@@ -9,6 +9,7 @@ func InitRoot(pEngine *gin.Engine) {
 	pEngine.GET("/api/task/start", startTask)
 
 	pEngine.StaticFile("/", "http/static/index.html")
-	pEngine.StaticFS("/static", gin.Dir("http/static/out", false))
+	pEngine.StaticFile("/task", "http/static/task.html")
 
+	pEngine.StaticFS("/out", gin.Dir("http/static/out", false))
 }

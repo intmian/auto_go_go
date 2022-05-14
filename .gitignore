@@ -1,6 +1,7 @@
-/.idea
-/.git
+.idea
+.git
 /static
 /pack/
 setting.json
 *.rar
+.idea/auto_go_go.iml
