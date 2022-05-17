@@ -27,5 +27,5 @@ func (l *Lottery) GetName() string {
 }
 
 func (l *Lottery) GetInitTimeStr() string {
-	return "0 0 21 * * ?"
+	return "0 0 22 * * ?"
 }
